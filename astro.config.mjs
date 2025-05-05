@@ -7,5 +7,4 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   integrations: [tailwind(), mdx()],
   site: 'https://rkloco.github.io',
-  base: '/personal-website',
 });
