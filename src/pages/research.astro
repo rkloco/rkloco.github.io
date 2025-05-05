@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Sample research projects - you can replace these with your actual projects
+const researchProjects = [
+  {
+    title: "Machine Learning for Climate Prediction",
+    description: "Research on using advanced ML techniques to improve climate forecasting models.",
+    year: "2022-Present",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "NLP Approaches to Scientific Literature Analysis",
+    description: "Development of natural language processing methods to analyze and extract insights from scientific papers.",
+    year: "2020-2022",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Privacy-Preserving AI Systems",
+    description: "Exploring techniques to build AI systems that protect user privacy while maintaining high accuracy.",
+    year: "2019-2021",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+];
+
+// Sample publications - you can replace these with your actual publications
+const publications = [
+  {
+    title: "Novel Approaches to Neural Network Architectures for Climate Data Analysis",
+    authors: "Your Name, Collaborator One, Collaborator Two",
+    journal: "Journal of Climate Informatics",
+    year: 2023,
+    doi: "10.1234/jci.2023.1234",
+    link: "#",
+  },
+  {
+    title: "Semantic Understanding of Scientific Literature: A Case Study",
+    authors: "Your Name, Collaborator Three",
+    journal: "Computational Linguistics Journal",
+    year: 2022,
+    doi: "10.5678/clj.2022.5678",
+    link: "#",
+  },
+  {
+    title: "Differential Privacy Techniques for Healthcare AI Applications",
+    authors: "Collaborator Four, Your Name, Collaborator Five",
+    journal: "AI in Healthcare",
+    year: 2021,
+    doi: "10.9101/aih.2021.9101",
+    link: "#",
+  },
+];
+---
+
+<Layout title="Research | Ronit Kapur">
+  <div class="max-w-4xl mx-auto">
+    <header class="mb-10">
+      <h1 class="text-4xl font-bold mb-4 text-blue-400">Research</h1>
+      <p class="text-xl text-gray-300">I have been involved with various research projects intersecting physics with computation. [Coming Soon]</p>
+    </header>
+    <!---
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-blue-300">Research Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {researchProjects.map((project) => (
+          <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-700 hover:shadow-blue-900/20 transition-shadow">
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-blue-400">{project.title}</h3>
+              <p class="text-gray-400 mb-3">{project.year}</p>
+              <p class="text-gray-300">{project.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-blue-300">Publications</h2>
+      <div class="space-y-6">
+        {publications.map((pub) => (
+          <div class="bg-gray-800 p-6 rounded-lg shadow-md border border-gray-700">
+            <h3 class="text-xl font-semibold mb-2 text-blue-400">{pub.title}</h3>
+            <p class="text-gray-300 mb-2">{pub.authors}</p>
+            <p class="text-gray-400 mb-2">
+              <em>{pub.journal}</em>, {pub.year}
+            </p>
+            <p class="text-gray-400 mb-3">DOI: {pub.doi}</p>
+            <a href={pub.link} class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">
+              View Publication →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-3xl font-bold mb-8 text-blue-300">Research Interests</h2>
+      <div class="bg-gray-800 p-8 rounded-lg shadow-md border border-gray-700">
+        <ul class="list-disc pl-5 space-y-3 text-gray-300">
+          <li>Artificial Intelligence and Machine Learning applications</li>
+          <li>Natural Language Processing and Computational Linguistics</li>
+          <li>Privacy-Preserving AI Systems</li>
+          <li>Climate Science and Environmental Modeling</li>
+          <li>Human-Computer Interaction</li>
+        </ul>
+      </div>
+    </section>
+    -->
+  </div>
+</Layout> 

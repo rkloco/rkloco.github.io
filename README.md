@@ -1,4 +1,80 @@
-# Astro Starter Kit: Basics
+# Personal Website
+
+A modern personal website built with Astro, featuring:
+
+- A beautifully designed home page
+- Blog section with markdown support
+- Research section to showcase your work
+- Outreach section for community and educational activities
+
+## Quick Start
+
+To run the website locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The site will be available at [http://localhost:4321](http://localhost:4321)
+
+## Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+This will generate static files in the `dist` directory that you can deploy to any static hosting service.
+
+## Adding Blog Posts
+
+Blog posts are written in Markdown and stored in the `src/content/blog` directory.
+
+To add a new blog post:
+
+1. Create a new `.md` file in the `src/content/blog` directory
+2. Add the required frontmatter at the top of the file:
+
+```md
+---
+title: "Your Post Title"
+publishDate: 2023-12-25
+excerpt: "A brief summary of your post that will appear in the blog list"
+image: "https://example.com/your-image.jpg" # Optional
+tags: ["tag1", "tag2"] # Optional
+---
+
+Your markdown content here...
+```
+
+3. Write your content in Markdown format below the frontmatter
+
+## Customizing the Site
+
+### Home Page
+
+Edit `src/pages/index.astro` to customize the home page content.
+
+### Research and Outreach Pages
+
+Edit `src/pages/research.astro` and `src/pages/outreach.astro` to update your research projects and outreach activities.
+
+### Layout and Styling
+
+- Main layout: `src/layouts/Layout.astro`
+- Blog post layout: `src/layouts/BlogPostLayout.astro`
+- Styling is done with Tailwind CSS
+
+## Technologies Used
+
+- [Astro](https://astro.build) - Static site builder
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [MDX](https://mdxjs.com) - Markdown with JSX support
 
 ```sh
 npm create astro@latest -- --template basics

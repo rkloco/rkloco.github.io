@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Sample outreach activities - you can replace these with your actual activities
+const outreachActivities = [
+  {
+    title: "Science Communication Workshop",
+    description: "Led a workshop on effective science communication for graduate students and early-career researchers.",
+    date: "June 2023",
+    location: "University Science Center",
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "AI Ethics Panel Discussion",
+    description: "Participated in a public panel discussion on ethical considerations in artificial intelligence development.",
+    date: "March 2023",
+    location: "City Tech Forum",
+    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Community Coding Bootcamp",
+    description: "Volunteered as an instructor for a free coding bootcamp aimed at underrepresented groups in tech.",
+    date: "October 2022",
+    location: "Community Education Center",
+    image: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+];
+
+// Sample teaching and mentoring activities
+const teachingActivities = [
+  {
+    title: "Introduction to Data Science",
+    role: "Course Instructor",
+    institution: "University Name",
+    period: "Spring 2023",
+  },
+  {
+    title: "Advanced Machine Learning",
+    role: "Teaching Assistant",
+    institution: "University Name",
+    period: "Fall 2022",
+  },
+  {
+    title: "Undergraduate Research Program",
+    role: "Research Mentor",
+    institution: "Research Institute",
+    period: "Summer 2022",
+  },
+];
+---
+
+<Layout title="Outreach | Ronit Kapur">
+  <div class="max-w-4xl mx-auto">
+    <header class="mb-10">
+      <h1 class="text-4xl font-bold mb-4 text-blue-400">Outreach</h1>
+      <p class="text-xl text-gray-300">Because what would be the point otherwise? [Coming Soon]</p>
+    </header>
+    <!--
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-blue-300">Public Engagement</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {outreachActivities.map((activity) => (
+          <div class="bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-700 hover:shadow-blue-900/20 transition-shadow">
+            <img 
+              src={activity.image} 
+              alt={activity.title} 
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-blue-400">{activity.title}</h3>
+              <p class="text-gray-400 mb-2">{activity.date} | {activity.location}</p>
+              <p class="text-gray-300">{activity.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold mb-8 text-blue-300">Teaching & Mentoring</h2>
+      <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden border border-gray-700">
+        <div class="divide-y divide-gray-700">
+          {teachingActivities.map((item) => (
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-blue-400">{item.title}</h3>
+              <p class="text-gray-300 mb-1"><strong class="text-blue-300">Role:</strong> {item.role}</p>
+              <p class="text-gray-300 mb-1"><strong class="text-blue-300">Institution:</strong> {item.institution}</p>
+              <p class="text-gray-300"><strong class="text-blue-300">Period:</strong> {item.period}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-3xl font-bold mb-8 text-blue-300">Get Involved</h2>
+      <div class="bg-gray-800 p-8 rounded-lg shadow-md border border-gray-700">
+        <p class="text-gray-300 mb-6">
+          Interested in collaborating on educational initiatives or community projects? 
+          I'm always open to new opportunities to share knowledge and make a positive impact.
+        </p>
+        <div class="bg-gray-700 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 text-blue-400">Contact Me</h3>
+          <p class="text-gray-300 mb-2">
+            <strong class="text-blue-300">Email:</strong> <a href="mailto:your.email@example.com" class="text-blue-400 hover:underline">your.email@example.com</a>
+          </p>
+          <p class="text-gray-300">
+            <strong class="text-blue-300">Twitter:</strong> <a href="https://twitter.com/yourusername" class="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">@yourusername</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    -->
+  </div>
+</Layout> 

@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts and sort them by date
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<Layout title="Blog | Ronit Kapur">
+	<div class="max-w-4xl mx-auto">
+		<header class="mb-10">
+			<h1 class="text-4xl font-bold mb-4 text-blue-400">ISM - A Blog</h1>
+			<p class="text-xl text-gray-300">Thoughts, ideas, explorations. [Coming Soon]</p>
+		</header>
+		<!--
+		{sortedPosts.length > 0 ? (
+			<div class="space-y-10">
+				{sortedPosts.map((post) => (
+					<article class="bg-gray-800 rounded-lg overflow-hidden shadow-md border border-gray-700 hover:shadow-blue-900/20 transition-shadow">
+						<a href={`/blog/${post.slug}`} class="block hover:opacity-90 transition-opacity">
+							{post.data.image && (
+								<img 
+									src={post.data.image} 
+									alt={post.data.title} 
+									class="w-full h-64 object-cover"
+								/>
+							)}
+						</a>
+						<div class="p-6">
+							<a href={`/blog/${post.slug}`} class="block">
+								<h2 class="text-2xl font-bold mb-2 text-blue-400 hover:text-blue-300 transition-colors">{post.data.title}</h2>
+							</a>
+							<p class="text-gray-400 mb-4">
+								<time datetime={post.data.publishDate.toISOString()}>
+									{post.data.publishDate.toLocaleDateString('en-US', {
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric'
+									})}
+								</time>
+							</p>
+							<p class="text-gray-300 mb-4">{post.data.excerpt}</p>
+							<a href={`/blog/${post.slug}`} class="text-blue-400 hover:underline">
+								Read more →
+							</a>
+						</div>
+					</article>
+				))}
+			</div>
+		) : (
+			<div class="bg-gray-800 p-8 rounded-lg shadow-md border border-gray-700 text-center">
+				<h2 class="text-2xl font-semibold mb-4 text-blue-400">No posts yet</h2>
+				<p class="text-gray-300">Check back soon for new content!</p>
+			</div>
+		)}
+		-->
+	</div>
+</Layout> 
