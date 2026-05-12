@@ -1,5 +1,5 @@
 ---
-title: "Notes on Truth and Knowledge: A Working Framework"
+title: "Notes on Truth and Knowledge"
 publishDate: 2026-05-11
 excerpt: "A working framework for assigning truth values across analytic, falsifiable synthetic, and unfalsifiable synthetic propositions — and why the AI moment makes this question acute."
 tags: ["epistemology", "philosophy", "ai"]
@@ -8,6 +8,7 @@ tags: ["epistemology", "philosophy", "ai"]
 ## Why I bother with this
 
 I came to epistemology somewhat backwards. I started as a physics and CS person who basically thought science could answer any real question, and the rest was either confused or unimportant. At some point I realized that view was self-undermining — the commitments that make science work aren't themselves scientific — and that scientism leaves a huge class of consequential questions homeless.
+
 
 The AI moment makes this acute. Questions about machine consciousness, moral status, what these systems actually understand — these aren't empirically decidable, but we're going to make decisions about them with massive stakes regardless. A culture without a working methodology for unfalsifiable-synthetic questions will make those decisions badly. So this isn't armchair philosophy for me — it's a response to what I think is a real and worsening problem with how the dominant educated-person epistemology handles questions outside its comfort zone.
 

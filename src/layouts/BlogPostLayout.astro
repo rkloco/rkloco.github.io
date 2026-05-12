@@ -17,6 +17,11 @@ const formattedDate = publishDate.toLocaleDateString('en-US', {
 ---
 
 <Layout title={`${title} — Ronit Kapur`}>
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com">
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link slot="head" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
   <article class="post-page">
     <div class="post-inner">
       <header class="post-header">
@@ -67,7 +72,7 @@ const formattedDate = publishDate.toLocaleDateString('en-US', {
   }
 
   .post-header h1 {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--text-strong);
     letter-spacing: -0.01em;
@@ -85,23 +90,27 @@ const formattedDate = publishDate.toLocaleDateString('en-US', {
 
   .prose {
     color: var(--text);
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 17px;
+    line-height: 1.65;
+    font-family: Charter, 'Charter ITC', 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
   }
 
+  /* Headings stay mono — scaffolding vs. body contrast */
   .prose :global(h1),
   .prose :global(h2),
   .prose :global(h3) {
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     color: var(--text-strong);
     font-weight: 600;
-    margin-top: 32px;
-    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    margin-top: 40px;
+    margin-bottom: 14px;
   }
 
-  .prose :global(h2) { font-size: 18px; }
-  .prose :global(h3) { font-size: 15px; }
+  .prose :global(h2) { font-size: 16px; }
+  .prose :global(h3) { font-size: 14px; }
 
-  .prose :global(p) { margin: 0 0 18px; }
+  .prose :global(p) { margin: 0 0 26px; }
 
   .prose :global(a) {
     color: var(--text-strong);
@@ -111,53 +120,55 @@ const formattedDate = publishDate.toLocaleDateString('en-US', {
   }
   .prose :global(a:hover) { border-bottom-color: var(--text); }
 
-  .prose :global(strong) { color: var(--text-strong); font-weight: 500; }
-
+  .prose :global(strong) { color: var(--text-strong); font-weight: 600; }
   .prose :global(em) { color: var(--text); font-style: italic; }
 
   .prose :global(code) {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
     background: rgba(127, 127, 127, 0.12);
     padding: 1px 5px;
     border-radius: 2px;
-    font-size: 13px;
+    font-size: 0.85em;
   }
 
   .prose :global(pre) {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
     background: rgba(127, 127, 127, 0.08);
     padding: 14px 16px;
     border: 1px solid var(--rule);
     border-radius: 2px;
     overflow-x: auto;
-    font-size: 12.5px;
+    font-size: 13px;
     line-height: 1.6;
-    margin: 18px 0;
+    margin: 26px 0;
   }
-  .prose :global(pre code) { background: none; padding: 0; }
+  .prose :global(pre code) { background: none; padding: 0; font-size: 1em; }
 
   .prose :global(blockquote) {
     border-left: 2px solid var(--rule);
     padding-left: 16px;
-    margin: 18px 0;
+    margin: 26px 0;
     color: var(--text-dim);
   }
 
   .prose :global(ul), .prose :global(ol) {
-    padding-left: 22px;
-    margin: 0 0 18px;
+    padding-left: 24px;
+    margin: 0 0 26px;
   }
-  .prose :global(li) { margin-bottom: 6px; }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(li > ul), .prose :global(li > ol) { margin: 8px 0; }
 
   .prose :global(img) {
     max-width: 100%;
     height: auto;
-    margin: 18px 0;
+    margin: 26px 0;
     border: 1px solid var(--rule);
   }
 
-  .prose :global(hr) { margin: 32px 0; }
+  .prose :global(hr) { margin: 40px 0; }
 
   .post-footer {
-    margin-top: 56px;
+    margin-top: 64px;
   }
 
   .post-footer a {
