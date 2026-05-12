@@ -1,355 +1,154 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Sample outreach activities - you can replace these with your actual activities
-const outreachActivities = [
-  {
-    title: "Science Communication Workshop",
-    description: "Led a workshop on effective science communication for graduate students and early-career researchers.",
-    date: "June 2023",
-    location: "University Science Center",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "AI Ethics Panel Discussion",
-    description: "Participated in a public panel discussion on ethical considerations in artificial intelligence development.",
-    date: "March 2023",
-    location: "City Tech Forum",
-    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Community Coding Bootcamp",
-    description: "Volunteered as an instructor for a free coding bootcamp aimed at underrepresented groups in tech.",
-    date: "October 2022",
-    location: "Community Education Center",
-    image: "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-  },
-];
-
-// Sample teaching and mentoring activities
-const teachingActivities = [
-  {
-    title: "Introduction to Data Science",
-    role: "Course Instructor",
-    institution: "University Name",
-    period: "Spring 2023",
-  },
-  {
-    title: "Advanced Machine Learning",
-    role: "Teaching Assistant",
-    institution: "University Name",
-    period: "Fall 2022",
-  },
-  {
-    title: "Undergraduate Research Program",
-    role: "Research Mentor",
-    institution: "Research Institute",
-    period: "Summer 2022",
-  },
-];
-
-// Gallery images
 const galleryImages = [
   {
     src: "/gallery/whirlpool.jpg",
-    thumbnail: "/gallery/whirlpool.jpg",
     width: 665,
     height: 957,
     alt: "Whirlpool Galaxy",
-    caption: `<div style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Whirlpool Galaxy (M51)</div><div style="font-size: 14px; font-weight: 400; color: #9ca3af; line-height: 1.6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">A grand design spiral galaxy located approximately 23 million light-years away in the constellation Canes Venatici.</div>`
+    title: "Whirlpool Galaxy (M51)",
+    caption: "A grand-design spiral galaxy ~23 million light-years away, in Canes Venatici.",
   },
   {
     src: "/gallery/moon.JPG",
-    thumbnail: "/gallery/moon.JPG",
     width: 1080,
     height: 1920,
     alt: "Moon",
-    caption: `<div style="font-size: 18px; font-weight: 700; color: #ffffff; margin-bottom: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Full Moon</div><div style="font-size: 14px; font-weight: 400; color: #9ca3af; line-height: 1.6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Detailed lunar surface features, craters, and maria captured with Seestar S50 telescope.</div>`
-  }
+    title: "Full Moon",
+    caption: "Lunar surface detail captured with a Seestar S50 telescope.",
+  },
 ];
 ---
 
-<Layout title="Gallery | Ronit Kapur">
-  <!-- PhotoSwipe CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe.css">
-  <!-- Dynamic Caption Plugin CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css">
+<Layout title="Gallery — Ronit Kapur">
+  <link slot="head" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe.css">
 
-  <div class="max-w-6xl mx-auto">
-    <header class="mb-10">
-      <h1 class="text-4xl font-bold mb-4 text-blue-400">Gallery</h1>
-      <p class="text-xl text-gray-300">Astrophotography & more. Click images for details.</p>
-    </header>
+  <div class="gallery-page">
+    <div class="gallery-inner">
+      <header>
+        <div class="sec-head">
+          <span class="hash">#</span>
+          <span class="name">gallery</span>
+          <span class="meta">{galleryImages.length} frames</span>
+        </div>
+        <hr />
+        <p class="intro">Astrophotography projects. Click a frame to open.</p>
+      </header>
 
-    <!-- Gallery Grid -->
-    <div class="pswp-gallery" id="my-gallery">
-      {galleryImages.map((image, index) => (
-        <a 
-          href={image.src}
-          data-pswp-width={image.width}
-          data-pswp-height={image.height}
-          target="_blank"
-          class="gallery-item cursor-pointer group block"
-        >
-          <img 
-            src={image.thumbnail}
-            alt={image.alt}
-            class="w-full h-64 object-cover shadow-lg transition-transform duration-300 group-hover:scale-105"
-          />
-          <!-- Caption content for the plugin -->
-          <span class="pswp-caption-content" style="display: none;">{image.caption}</span>
-        </a>
-      ))}
+      <div class="pswp-gallery" id="my-gallery">
+        {galleryImages.map((image) => (
+          <a
+            href={image.src}
+            data-pswp-width={image.width}
+            data-pswp-height={image.height}
+            target="_blank"
+            class="frame"
+          >
+            <img src={image.src} alt={image.alt} loading="lazy" />
+            <div class="caption">
+              <span class="title">{image.title}</span>
+              <span class="desc">{image.caption}</span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
-
-  <!-- PhotoSwipe initialization with Dynamic Caption Plugin -->
-  <script type="module">
-    import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe-lightbox.esm.js';
-    import PhotoSwipeDynamicCaption from 'https://unpkg.com/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.js';
-    
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: '#my-gallery',
-      children: 'a',
-      
-      // Dynamic import of PhotoSwipe core
-      pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe.esm.js'),
-      
-      // Enable zoom animation
-      showHideAnimationType: 'zoom',
-      
-      // Animation duration
-      showAnimationDuration: 333,
-      hideAnimationDuration: 333,
-      
-      // Padding for images to make room for captions
-      paddingFn: (viewportSize) => {
-        return {
-          top: 30, 
-          bottom: 30, 
-          left: 70, 
-          right: 70
-        }
-      },
-      
-      // Enable zoom
-      zoom: true,
-      
-      // Close on vertical drag
-      closeOnVerticalDrag: true,
-      
-      // Mouse wheel to zoom
-      wheelToZoom: true,
-      
-      // Pinch to close
-      pinchToClose: true,
-      
-      // Background opacity
-      bgOpacity: 0.9,
-      
-      // Spacing between slides
-      spacing: 0.1,
-      
-      // Allow pan to next/prev
-      allowPanToNext: true,
-      
-      // Return focus to trigger element
-      returnFocus: true,
-    });
-
-    // Initialize the dynamic caption plugin
-    const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
-      // Automatically position captions (aside or below)
-      type: 'auto',
-      
-      // Custom caption content function to render HTML
-      captionContent: (slide) => {
-        const captionEl = slide.data.element.querySelector('.pswp-caption-content');
-        if (captionEl) {
-          // Create a temporary div to parse HTML
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = captionEl.textContent;
-          return tempDiv.innerHTML;
-        }
-        return slide.data.element.querySelector('img').getAttribute('alt');
-      },
-      
-      // Mobile layout breakpoint
-      mobileLayoutBreakpoint: 600,
-      
-      // Horizontal edge threshold
-      horizontalEdgeThreshold: 20,
-      
-      // Mobile caption overlap ratio
-      mobileCaptionOverlapRatio: 0.3,
-      
-      // Vertically center image
-      verticallyCenterImage: false,
-    });
-    
-    // Initialize PhotoSwipe after plugins are added
-    lightbox.init();
-  </script>
-
-  <!-- Additional CSS for caption styling -->
-  <style>
-    .pswp__dynamic-caption {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
-    }
-    
-    .pswp__dynamic-caption--aside {
-      background: rgba(0, 0, 0, 0.85) !important;
-      border-radius: 8px !important;
-      backdrop-filter: blur(8px) !important;
-      padding: 20px !important;
-      margin-top: 70px !important;
-      max-width: 350px !important;
-    }
-    
-    .pswp__dynamic-caption--below {
-      text-align: center !important;
-      padding: 20px 0 0 !important;
-      max-width: 700px !important;
-    }
-    
-    .pswp__dynamic-caption--mobile {
-      background: rgba(0, 0, 0, 0.85) !important;
-      padding: 15px 20px !important;
-      border-radius: 8px 8px 0 0 !important;
-      backdrop-filter: blur(8px) !important;
-    }
-  </style>
 </Layout>
 
 <style>
-  /* Custom styles for gallery */
+  .gallery-page {
+    min-height: 100vh;
+    padding: 64px 24px 96px;
+  }
+
+  .gallery-inner {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  header { margin-bottom: 40px; max-width: 720px; }
+
+  .intro {
+    color: var(--text);
+    margin: 0;
+  }
+
   .pswp-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
   }
-  
-  .gallery-item {
-    position: relative;
-    overflow: hidden;
+
+  .frame {
+    display: block;
+    color: inherit;
     text-decoration: none;
-  }
-  
-  .gallery-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0);
-    transition: background 0.3s ease;
-    pointer-events: none;
-  }
-  
-  .gallery-item:hover::after {
-    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--rule);
+    transition: border-color 0.15s, transform 0.2s ease;
   }
 
-  /* PhotoSwipe custom styling */
-  .pswp {
-    --pswp-bg: rgba(0, 0, 0, 0.9);
-  }
-  
-  .pswp__button {
-    color: #fff !important;
-  }
-  
-  .pswp__counter {
-    color: #fff !important;
+  .frame:hover {
+    border-color: var(--text-dimmer);
   }
 
-  /* Custom dynamic caption styling */
-  .pswp__dynamic-caption {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  .frame img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transition: opacity 0.2s;
+  }
+
+  .frame:hover img {
+    opacity: 0.92;
+  }
+
+  .caption {
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .caption .title {
+    color: var(--text-strong);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .caption .desc {
+    color: var(--text-dimmer);
+    font-size: 12px;
     line-height: 1.5;
   }
 
-  .pswp__dynamic-caption .caption-heading {
-    font-size: 18px;
-    font-weight: 700;
-    color: #ffffff !important;
-    margin-bottom: 8px;
-    letter-spacing: -0.025em;
-    display: block;
+  /* PhotoSwipe overrides — match the mono/charcoal aesthetic */
+  :global(.pswp) {
+    --pswp-bg: rgba(10, 10, 10, 0.96);
   }
 
-  .pswp__dynamic-caption .caption-text {
-    font-size: 14px;
-    font-weight: 400;
-    color: #9ca3af !important;
-    line-height: 1.6;
-    display: block;
+  :global(.pswp__button) { color: var(--text) !important; }
+  :global(.pswp__counter) {
+    color: var(--text-dimmer) !important;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px !important;
   }
+</style>
 
-  .pswp__dynamic-caption--aside {
-    max-width: 350px;
-    padding: 20px 15px 20px 20px;
-    margin-top: 70px;
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 8px;
-    backdrop-filter: blur(8px);
-  }
+<script type="module">
+  import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe-lightbox.esm.js';
 
-  .pswp__dynamic-caption--aside .caption-heading {
-    font-size: 16px !important;
-  }
-
-  .pswp__dynamic-caption--aside .caption-text {
-    font-size: 13px !important;
-  }
-
-  .pswp__dynamic-caption--below {
-    max-width: 700px;
-    padding: 20px 0 0;
-    text-align: center;
-  }
-
-  .pswp__dynamic-caption--below .caption-heading {
-    font-size: 20px !important;
-    margin-bottom: 10px;
-  }
-
-  .pswp__dynamic-caption--below .caption-text {
-    font-size: 15px !important;
-  }
-
-  .pswp__dynamic-caption--mobile {
-    background: rgba(0, 0, 0, 0.85);
-    padding: 15px 20px;
-    border-radius: 8px 8px 0 0;
-    backdrop-filter: blur(8px);
-  }
-
-  .pswp__dynamic-caption--mobile .caption-heading {
-    font-size: 17px !important;
-  }
-
-  .pswp__dynamic-caption--mobile .caption-text {
-    font-size: 14px !important;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .pswp-gallery {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .pswp-gallery {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (min-width: 1025px) {
-    .pswp-gallery {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-</style> 
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '#my-gallery',
+    children: 'a',
+    pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.4.2/dist/photoswipe.esm.js'),
+    showHideAnimationType: 'zoom',
+    bgOpacity: 0.96,
+    closeOnVerticalDrag: true,
+    wheelToZoom: true,
+  });
+  lightbox.init();
+</script>

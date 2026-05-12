@@ -2,10 +2,10 @@
 interface Props {
 	title: string;
 	description?: string;
-	showNavbar?: boolean;
 }
 
-const { title, description = "Ronit Kapur's personal website with blog, research, and outreach sections", showNavbar = true } = Astro.props;
+const { title, description = "Ronit Kapur — personal site" } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -14,92 +14,221 @@ const { title, description = "Ronit Kapur's personal website with blog, research
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<script is:inline>
+			(function () {
+				try {
+					var t = localStorage.getItem('theme');
+					if (t === 'light' || t === 'dark') {
+						document.documentElement.setAttribute('data-theme', t);
+					}
+				} catch (e) {}
+			})();
+		</script>
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="theme-color" content="#161616" />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 		<title>{title}</title>
+		<slot name="head" />
 	</head>
-	<body class="min-h-screen flex flex-col bg-gray-900 text-gray-200 font-serif">
-		{showNavbar && (
-			<header class="bg-gray-800 border-b border-gray-700">
-				<div class="container mx-auto px-4 py-6">
-					<nav class="flex justify-between items-center">
-						<a href="/" class="text-2xl font-bold text-blue-400">Ronit Kapur</a>
-						
-						<!-- Mobile menu button -->
-						<button id="mobile-menu-button" class="md:hidden text-gray-200 hover:text-blue-400 transition-colors">
-							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-							</svg>
-						</button>
-
-						<!-- Desktop Navigation -->
-						<ul class="hidden md:flex space-x-6">
-							<li><a href="/" class="hover:text-blue-400 transition-colors">Home</a></li>
-							<li><a href="/blog" class="hover:text-blue-400 transition-colors">Writing</a></li>
-							<li><a href="/research" class="hover:text-blue-400 transition-colors">Research</a></li>
-							<li><a href="/outreach" class="hover:text-blue-400 transition-colors">Outreach</a></li>
-							<li><a href="/gallery" class="hover:text-blue-400 transition-colors">Gallery</a></li>
-						</ul>
-					</nav>
-
-					<!-- Mobile Navigation -->
-					<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-						<ul class="flex flex-col space-y-3">
-							<li><a href="/" class="block hover:text-blue-400 transition-colors">Home</a></li>
-							<li><a href="/blog" class="block hover:text-blue-400 transition-colors">Writing</a></li>
-							<li><a href="/research" class="block hover:text-blue-400 transition-colors">Research</a></li>
-							<li><a href="/outreach" class="block hover:text-blue-400 transition-colors">Outreach</a></li>
-							<li><a href="/gallery" class="block hover:text-blue-400 transition-colors">Gallery</a></li>
-						</ul>
-					</div>
-				</div>
-			</header>
+	<body>
+		<button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light or dark mode">
+			<span class="bracket">[</span> <span id="themeLabel">light</span> <span class="bracket">]</span>
+		</button>
+		{!isHome && (
+			<a class="back-link" href="/">
+				<span class="bracket">[</span> ← home <span class="bracket">]</span>
+			</a>
 		)}
-		
-		<main class="flex-grow container mx-auto px-4 py-8">
+
+		<main class="site-main">
 			<slot />
 		</main>
-		
-		<footer class="bg-gray-800 border-t border-gray-700 py-8">
-			<div class="container mx-auto px-4">
-				<div class="flex justify-between items-center">
-					<p class="text-gray-400">© {new Date().getFullYear()} Ronit Kapur. Site built with <a href="https://astro.build/" class="text-blue-500 hover:text-blue-400">Astro</a>.</p>
-					<div class="flex space-x-4">
-						<a href="https://github.com/rkloco" target="_blank" class="text-gray-400 hover:text-blue-400">GitHub</a>
-						<a href="https://x.com/rk_loco" target="_blank" class="text-gray-400 hover:text-blue-400">Twitter</a>
-						<a href="https://linkedin.com/in/ronit-kapur" target="_blank" class="text-gray-400 hover:text-blue-400">LinkedIn</a>
-					</div>
-				</div>
-			</div>
-		</footer>
 	</body>
 </html>
 
 <style is:global>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		font-family: 'Lora', Georgia, serif;
+	/* Self-hosted iA Writer Duospace. Files at public/fonts/ — see README for download steps.
+	   If the .ttf isn't present, browser silently falls through to the next font in the stack. */
+	@font-face {
+		font-family: 'iA Writer Duospace';
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+		src: url('/fonts/iAWriterDuospace-Regular.ttf') format('truetype');
+	}
+	@font-face {
+		font-family: 'iA Writer Duospace';
+		font-weight: 400;
+		font-style: italic;
+		font-display: swap;
+		src: url('/fonts/iAWriterDuospace-Italic.ttf') format('truetype');
+	}
+	@font-face {
+		font-family: 'iA Writer Duospace';
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+		src: url('/fonts/iAWriterDuospace-Bold.ttf') format('truetype');
+	}
+	@font-face {
+		font-family: 'iA Writer Duospace';
+		font-weight: 700;
+		font-style: italic;
+		font-display: swap;
+		src: url('/fonts/iAWriterDuospace-BoldItalic.ttf') format('truetype');
 	}
 
-	h1, h2, h3, h4, h5, h6 {
-		font-family: 'Merriweather', Georgia, serif;
+	:root {
+		--bg: #161616;
+		--text: #d1d5db;
+		--text-strong: #f5f5f5;
+		--text-dim: #9ca3af;
+		--text-dimmer: #6b7280;
+		--text-faint: #4b5563;
+		--rule: #2a2a2a;
+		--dot: #4b5563;
+	}
+
+	:root[data-theme="light"] {
+		--bg: #f6f3ec;
+		--text: #2a2a2a;
+		--text-strong: #0a0a0a;
+		--text-dim: #4b5563;
+		--text-dimmer: #6b7280;
+		--text-faint: #b8b4ad;
+		--rule: #d8d3ca;
+		--dot: #b8b4ad;
+	}
+
+	html, body {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		min-height: 100vh;
+	}
+
+	body {
+		background: var(--bg);
+		color: var(--text);
+		font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+		font-size: 14px;
+		line-height: 1.7;
+		transition: background-color 0.2s ease, color 0.2s ease;
+	}
+
+	.site-main {
+		width: 100%;
+	}
+
+	.theme-toggle, .back-link {
+		position: fixed;
+		top: 20px;
+		z-index: 5;
+		background: none;
+		border: none;
+		padding: 4px 0;
+		color: var(--text-dimmer);
+		font-family: inherit;
+		font-size: 12px;
+		letter-spacing: 0.04em;
+		cursor: pointer;
+		text-decoration: none;
+		transition: color 0.15s;
+	}
+	.theme-toggle { right: 24px; }
+	.back-link { left: 24px; }
+	.theme-toggle:hover, .back-link:hover { color: var(--text); }
+	.theme-toggle .bracket, .back-link .bracket { color: var(--text-faint); }
+
+	/* Section header pattern shared across pages */
+	.sec-head {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		color: var(--text-dimmer);
+		font-size: 13px;
+		margin-bottom: 6px;
+	}
+	.sec-head .hash { color: var(--text-faint); }
+	.sec-head .name {
+		color: var(--text-dim);
+		text-transform: lowercase;
+		letter-spacing: 0.04em;
+	}
+	.sec-head .meta {
+		color: var(--text-faint);
+		margin-left: auto;
+		font-size: 12px;
+	}
+
+	hr {
+		border: none;
+		border-top: 1px solid var(--rule);
+		margin: 0 0 18px;
+	}
+
+	/* Shooting stars (global so JS-spawned ones get styled) */
+	.shooting-star {
+		position: absolute;
+		width: 110px;
+		height: 1.4px;
+		background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 55%, rgba(255,255,255,0.95) 96%, rgba(255,255,255,0) 100%);
+		border-radius: 1px;
+		transform-origin: 100% 50%;
+		filter: blur(0.4px) drop-shadow(0 0 2px rgba(255,255,255,0.4));
+		will-change: transform, opacity;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	:root[data-theme="light"] .shooting-star { display: none !important; }
+
+	@keyframes shoot {
+		0%   { opacity: 0; transform: translate(0, 0) rotate(var(--angle)) scaleX(0.2); }
+		8%   { opacity: 1; transform: translate(calc(var(--dx) * 0.08), calc(var(--dy) * 0.08)) rotate(var(--angle)) scaleX(1); }
+		100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--angle)) scaleX(1); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.shooting-star { display: none !important; }
 	}
 </style>
 
 <script>
-	// Mobile menu functionality
-	const mobileMenuButton = document.getElementById('mobile-menu-button');
-	const mobileMenu = document.getElementById('mobile-menu');
+	function initTheme() {
+		const btn = document.getElementById('themeToggle');
+		const label = document.getElementById('themeLabel');
+		if (!btn || !label) return;
 
-	if (mobileMenuButton && mobileMenu) {
-		mobileMenuButton.addEventListener('click', () => {
-			mobileMenu.classList.toggle('hidden');
+		function current() {
+			return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+		}
+		function refreshLabel() {
+			label.textContent = current() === 'light' ? 'dark' : 'light';
+		}
+		refreshLabel();
+
+		btn.addEventListener('click', () => {
+			const next = current() === 'light' ? 'dark' : 'light';
+			if (next === 'light') {
+				document.documentElement.setAttribute('data-theme', 'light');
+			} else {
+				document.documentElement.removeAttribute('data-theme');
+			}
+			try { localStorage.setItem('theme', next); } catch (e) {}
+			refreshLabel();
 		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initTheme);
+	} else {
+		initTheme();
 	}
 </script>

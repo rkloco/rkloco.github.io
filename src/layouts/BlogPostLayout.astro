@@ -7,57 +7,176 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, publishDate, image, tags } = post.data;
+const { title, publishDate, tags } = post.data;
 
-// Format the date
 const formattedDate = publishDate.toLocaleDateString('en-US', {
   year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+  month: '2-digit',
+  day: '2-digit',
+}).replace(/\//g, '-');
 ---
 
-<Layout title={`${title} | Blog`}>
-  <article class="max-w-3xl mx-auto">
-    {image && (
-      <img 
-        src={image} 
-        alt={title} 
-        class="w-full h-80 object-cover rounded-lg shadow-md mb-8"
-      />
-    )}
-    
-    <header class="mb-8">
-      <h1 class="text-4xl font-bold mb-4 text-blue-400">{title}</h1>
-      <div class="flex flex-wrap items-center text-gray-400 mb-4">
-        <time datetime={publishDate.toISOString()}>{formattedDate}</time>
-        <span class="mx-2">•</span>
-        <span>{post.data.author || 'Anonymous'}</span>
-      </div>
-      
-      {tags && tags.length > 0 && (
-        <div class="flex flex-wrap gap-2">
-          {tags.map(tag => (
-            <span class="px-3 py-1 bg-gray-700 text-blue-300 rounded-full text-sm">
-              {tag}
-            </span>
-          ))}
+<Layout title={`${title} — Ronit Kapur`}>
+  <link slot="head" rel="preconnect" href="https://fonts.googleapis.com">
+  <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link slot="head" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link slot="head" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
+  <article class="post-page">
+    <div class="post-inner">
+      <header class="post-header">
+        <div class="sec-head">
+          <span class="hash">#</span>
+          <span class="name">post</span>
+          <span class="meta">{formattedDate}</span>
         </div>
-      )}
-    </header>
-    
-    <div class="prose prose-lg max-w-none prose-invert prose-headings:text-blue-300 prose-a:text-blue-400 prose-strong:text-blue-200 prose-pre:bg-gray-800 prose-blockquote:border-blue-500 prose-blockquote:text-gray-300 prose-hr:border-gray-700">
-      <slot />
+        <hr />
+        <h1>{title}</h1>
+        {tags && tags.length > 0 && (
+          <p class="tags">
+            {tags.map((tag, i) => (
+              <span>
+                {i > 0 && <span class="sep"> · </span>}
+                <span class="tag-pill">{tag}</span>
+              </span>
+            ))}
+          </p>
+        )}
+      </header>
+
+      <div class="prose">
+        <slot />
+      </div>
+
+      <footer class="post-footer">
+        <hr />
+        <a href="/blog">← back to writing</a>
+      </footer>
     </div>
-    
-    <footer class="mt-12 pt-8 border-t border-gray-700">
-      <div class="flex justify-between items-center">
-        <a href="/blog" class="text-blue-400 hover:underline">← Back to all posts</a>
-        <div class="flex gap-4">
-          <a href="#" class="text-gray-400 hover:text-blue-400">Share</a>
-          <a href="#" class="text-gray-400 hover:text-blue-400">Comment</a>
-        </div>
-      </div>
-    </footer>
   </article>
-</Layout> 
+</Layout>
+
+<style>
+  .post-page {
+    min-height: 100vh;
+    padding: 64px 24px 96px;
+  }
+
+  .post-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .post-header {
+    margin-bottom: 40px;
+  }
+
+  .post-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-strong);
+    letter-spacing: -0.01em;
+    margin: 12px 0 0;
+  }
+
+  .tags {
+    margin: 18px 0 0;
+    color: var(--text-dimmer);
+    font-size: 12px;
+  }
+
+  .tag-pill { color: var(--text-dim); }
+  .sep { color: var(--text-faint); }
+
+  .prose {
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.65;
+    font-family: Charter, 'Charter ITC', 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  }
+
+  /* Headings stay mono — scaffolding vs. body contrast */
+  .prose :global(h1),
+  .prose :global(h2),
+  .prose :global(h3) {
+    font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    color: var(--text-strong);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 40px;
+    margin-bottom: 14px;
+  }
+
+  .prose :global(h2) { font-size: 16px; }
+  .prose :global(h3) { font-size: 14px; }
+
+  .prose :global(p) { margin: 0 0 26px; }
+
+  .prose :global(a) {
+    color: var(--text-strong);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--dot);
+    padding-bottom: 1px;
+  }
+  .prose :global(a:hover) { border-bottom-color: var(--text); }
+
+  .prose :global(strong) { color: var(--text-strong); font-weight: 600; }
+  .prose :global(em) { color: var(--text); font-style: italic; }
+
+  .prose :global(code) {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    background: rgba(127, 127, 127, 0.12);
+    padding: 1px 5px;
+    border-radius: 2px;
+    font-size: 0.85em;
+  }
+
+  .prose :global(pre) {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    background: rgba(127, 127, 127, 0.08);
+    padding: 14px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 26px 0;
+  }
+  .prose :global(pre code) { background: none; padding: 0; font-size: 1em; }
+
+  .prose :global(blockquote) {
+    border-left: 2px solid var(--rule);
+    padding-left: 16px;
+    margin: 26px 0;
+    color: var(--text-dim);
+  }
+
+  .prose :global(ul), .prose :global(ol) {
+    padding-left: 24px;
+    margin: 0 0 26px;
+  }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(li > ul), .prose :global(li > ol) { margin: 8px 0; }
+
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    margin: 26px 0;
+    border: 1px solid var(--rule);
+  }
+
+  .prose :global(hr) { margin: 40px 0; }
+
+  .post-footer {
+    margin-top: 64px;
+  }
+
+  .post-footer a {
+    color: var(--text-dimmer);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--dot);
+    padding-bottom: 1px;
+    font-size: 12px;
+  }
+  .post-footer a:hover { color: var(--text); border-bottom-color: var(--text); }
+</style>

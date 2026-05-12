@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Misc — Ronit Kapur">
+	<div class="misc-page">
+		<div class="misc-inner">
+			<div class="cols">
+				<section>
+					<div class="sec-head">
+						<span class="hash">#</span>
+						<span class="name">books</span>
+					</div>
+					<hr />
+					<div class="sublabel">top</div>
+					<ul class="list">
+						<li><span class="title">Pragmatism</span><span class="byline">William James</span></li>
+						<li><span class="title">Superintelligence</span><span class="byline">Nick Bostrom</span></li>
+						<li><span class="title">The Black Swan</span><span class="byline">Nassim Taleb</span></li>
+					</ul>
+					<div class="sublabel">now</div>
+					<ul class="list">
+						<li><span class="title">Language Machines</span><span class="byline">Leif Weatherby</span></li>
+						<li><span class="title">The Matter with Things</span><span class="byline">Iain McGilchrist</span></li>
+						<li><span class="title">The Myth of the Framework</span><span class="byline">Karl Popper</span></li>
+					</ul>
+				</section>
+
+				<section>
+					<div class="sec-head">
+						<span class="hash">#</span>
+						<span class="name">music</span>
+					</div>
+					<hr />
+					<div class="sublabel">top</div>
+					<ul class="list">
+						<li><span class="title">Sviatoslav Richter</span></li>
+						<li><span class="title">Fleetwood Mac</span></li>
+						<li><span class="title">ABBA</span></li>
+					</ul>
+					<div class="sublabel">now</div>
+					<ul class="list">
+						<li><span class="title">Shouse</span></li>
+						<li><span class="title">MEDUZA</span></li>
+						<li><span class="title">The Strokes</span></li>
+					</ul>
+				</section>
+
+				<section>
+					<div class="sec-head">
+						<span class="hash">#</span>
+						<span class="name">shortform</span>
+					</div>
+					<hr />
+					<div class="sublabel">top</div>
+					<ul class="list">
+						<li><span class="title">SSC / ACX</span></li>
+						<li><span class="title">TennisAbstract</span></li>
+						<li><span class="title">Cosmo Shalizi</span></li>
+					</ul>
+					<div class="sublabel">now</div>
+					<ul class="list">
+						<li><span class="title">Cremieux</span></li>
+						<li><span class="title">Persuasion</span></li>
+						<li><span class="title">Dwarkesh Podcast</span></li>
+					</ul>
+				</section>
+			</div>
+
+			<section class="quotes-section">
+				<div class="sec-head">
+					<span class="hash">#</span>
+					<span class="name">quotes</span>
+				</div>
+				<hr />
+
+				<figure class="quote">
+					<blockquote>“Science is not finished until it is communicated.”</blockquote>
+					<figcaption>— Mark Walport</figcaption>
+				</figure>
+
+				<figure class="quote">
+					<blockquote>“You can’t ever reach perfection, but you can believe in an asymptote toward which you are ceaselessly striving.”</blockquote>
+					<figcaption>— Paul Kalanithi</figcaption>
+				</figure>
+
+				<figure class="quote">
+					<blockquote>“We all die. The goal isn’t to live forever, the goal is to create something that will.”</blockquote>
+					<figcaption>— Chuck Palahniuk</figcaption>
+				</figure>
+
+				<figure class="quote">
+					<blockquote>“You may of course ask whether we really need to refer to ‘saints.’ Wouldn’t it suffice just to refer to decent people? It is true that they form a minority. More than that, they always will remain a minority. And yet I see therein the very challenge to join the minority.”</blockquote>
+					<figcaption>— Viktor Frankl</figcaption>
+				</figure>
+
+				<figure class="quote">
+					<blockquote>“The universe seems neither benign nor hostile, merely indifferent.”</blockquote>
+					<figcaption>— Carl Sagan</figcaption>
+				</figure>
+
+				<figure class="quote">
+					<blockquote>“By teaching and glorifying the logical reasoning of loneliness where man knows that he will be utterly lost if ever he lets go of the first premise from which the whole process is being started, even the slim chances that loneliness may be transformed into solitude and logic into thought are obliterated.”</blockquote>
+					<figcaption>— Hannah Arendt</figcaption>
+				</figure>
+			</section>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.misc-page {
+		min-height: 100vh;
+		padding: 64px 24px 96px;
+	}
+
+	.misc-inner {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	.cols {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 28px;
+		margin-bottom: 56px;
+	}
+
+	.cols section { margin: 0; }
+
+	.sublabel {
+		color: var(--text-dimmer);
+		font-size: 12px;
+		margin: 0 0 8px;
+	}
+
+	/* Space between the top group and the now group within a section */
+	.sublabel + .list { margin: 0 0 22px; }
+	.list:last-child { margin-bottom: 0; }
+
+	.list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.list li {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 10px;
+	}
+
+	.list li:last-child { margin-bottom: 0; }
+
+	.list .title {
+		color: var(--text-strong);
+		font-weight: 500;
+		border-bottom: 1px dotted var(--dot);
+		padding-bottom: 1px;
+		align-self: flex-start;
+	}
+
+	.list .byline {
+		color: var(--text-dimmer);
+		font-size: 12px;
+		margin-top: 2px;
+		margin-left: 14px;
+	}
+
+	.quotes-section { margin-bottom: 40px; }
+
+	.quote {
+		margin: 0 0 26px;
+		padding: 0;
+	}
+
+	.quote blockquote {
+		margin: 0 0 6px;
+		padding: 0;
+		color: var(--text);
+		font-style: italic;
+	}
+
+	.quote figcaption {
+		color: var(--text-dimmer);
+		font-size: 12px;
+		font-style: normal;
+	}
+
+	@media (max-width: 720px) {
+		.cols {
+			grid-template-columns: 1fr;
+			gap: 36px;
+			margin-bottom: 36px;
+		}
+	}
+</style>
