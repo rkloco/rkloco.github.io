@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, publishDate, tags } = post.data;
+const { title, publishDate, tags, excerpt } = post.data;
 
 const formattedDate = publishDate.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -16,7 +16,7 @@ const formattedDate = publishDate.toLocaleDateString('en-US', {
 }).replace(/\//g, '-');
 ---
 
-<Layout title={`${title} — Ronit Kapur`}>
+<Layout title={`${title} — Ronit Kapur`} description={excerpt} ogType="article">
   <link slot="head" rel="preconnect" href="https://fonts.googleapis.com">
   <link slot="head" rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link slot="head" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
