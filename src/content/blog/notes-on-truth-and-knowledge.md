@@ -1,7 +1,7 @@
 ---
 title: "Notes on Truth and Knowledge"
 publishDate: 2026-05-11
-excerpt: "A working framework for assigning truth values across analytic, falsifiable synthetic, and unfalsifiable synthetic propositions."
+excerpt: "Scratch notes outlining a working framework for assigning truth values across analytic, falsifiable synthetic, and unfalsifiable synthetic propositions."
 tags: ["epistemology", "philosophy", "ai"]
 ---
 
